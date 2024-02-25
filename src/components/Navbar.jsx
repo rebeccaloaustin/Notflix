@@ -17,7 +17,6 @@ const Navbar = () => {
         <Link to='/'>
             <h1 className="uppercase text-red-600 font-nsans-bold cursor-pointer text-5xl">notflix</h1>
         </Link>
-
         {
             user?.email ?(
                 <div>

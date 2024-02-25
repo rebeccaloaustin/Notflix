@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import endpoints, { createImageUrl } from "../services/movieServices";
 
-const Hero = () => {
+const MovieBanner = () => {
   const [movie, setMovie] = useState({});
   useEffect(() => {
     axios.get(endpoints.popular).then((response) => {
@@ -50,4 +50,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default MovieBanner;
