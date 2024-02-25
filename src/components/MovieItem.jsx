@@ -30,7 +30,7 @@ const MovieItem = ({ movie }) => {
       />
 
       <div className="absolute top-0 left-0 w-full h-40 bg-black/80 opacity-0 hover:opacity-100">
-        <p className="whitespace-normal text-xs md:text-sm flex justify-center items-center h-full font-nsans-regular">
+        <p className="whitespace-normal text-xs md:text-sm flex justify-center items-center h-full font-nsans-bold">
           {movie.title}
         </p>
         <p onClick={likeFavShow} className="cursor-pointer">
