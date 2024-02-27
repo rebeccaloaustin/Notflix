@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { createImageUrl } from "../services/movieServices";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import {db} from "../services/firebase";
-import {UserAuth} from "../context/AuthContext";
+import { db } from "../services/firebase";
+import { UserAuth } from "../context/AuthContext";
 
 const MovieItem = ({ movie }) => {
     const [like, setLike] = useState(false);
