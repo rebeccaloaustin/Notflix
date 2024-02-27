@@ -28,9 +28,9 @@ const MovieBanner = () => {
   const { title, backdrop_path, release_date, overview } = movie;
 
   return (
-    <div className="w-full h-[550px] lg:h-[850px]">
+    <div className="w-full h-[550px] lg:h-[650px]">
       <div className="w-full h-full">
-        <div className="absolute w-full h-[550px] lg:h-[850px] bg-gradient-to-r from-black"/>
+        <div className="absolute w-full h-[550px] lg:h-[650px] bg-gradient-to-r from-black"/>
           <img 
           className="w-full h-full object-cover object-top"
           src={createImageUrl(backdrop_path, "original")} 

@@ -1,11 +1,11 @@
 import React from "react";
-import Hero from "../components/MovieBanner";
+import MovieBanner from "../components/MovieBanner";
 import MovieRow from "../components/MovieRow";
 import endpoints from "../services/movieServices";
 
 const Home = () => {
     return <>
-        <Hero />
+        <MovieBanner />
         <MovieRow title='upcoming' url={endpoints.upcoming}/>
         <MovieRow title='trending' url={endpoints.trending}/>
         <MovieRow title='top rated' url={endpoints.topRated}/>

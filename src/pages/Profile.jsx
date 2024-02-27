@@ -22,6 +22,14 @@ const Profile = () => {
     const slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft + offset;
   };
+
+  const unlikeShow = async (movie) => {
+    const userDoc = doc(db, "users", user.email)
+
+    await updateDoc(userDoc, {
+        favShows: arrayRemove(movie),
+    })
+  }
   
   if (!user) {
     return(
@@ -62,19 +70,25 @@ const Profile = () => {
               id={`slider`}
               className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
             >
-              {movies.map(({id, title, backdrop_path, poster_path}) => (
+              {movies.map((movie) => (
                 <div
-                  key={id}
+                  key={movie.id}
                   className="relative w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block rounded-lg overflow-hidden cursor- pointer m-2"
                 >
                   <img
                     className="w-full h-40 block object-cover object-top"
-                    src={createImageUrl(backdrop_path ?? poster_path, "w500")}
-                    alt={title}
+                    src={createImageUrl(movie.backdrop_path ?? movie.poster_path, "w500")}
+                    alt={movie.title}
                   />
                   <div className="absolute top-0 left-0 w-full h-40 bg-black/80 opacity-0 hover:opacity-100">
                     <p className="whitespace-normal text-xs md:text-sm flex justify-center items-center h-full font-nsans-bold">
-                      {title}
+                      {movie.title}
+                    </p>
+                    <p>
+                        <AiOutlineClose size={30}
+                        onClick={() => unlikeShow(movie)}
+                        className="absolute top-2 right-2"
+                        />
                     </p>
                   </div>
                 </div>
