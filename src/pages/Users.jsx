@@ -6,7 +6,7 @@ const Users = () => {
 const { user } = UserAuth();
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-4xl md:text-4xl lg:text-5xl text-white font-nsans-light mt-[-200px] md:mt-8 lg:mt-15 text-center">
+      <h1 className="text-4xl md:text-4xl lg:text-5xl text-white font-nsans-light mt-[-20px] md:mt-8 lg:mt-15 text-center">
         Who's watching?
       </h1>
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-9">

@@ -14,7 +14,7 @@ const Signup = () => {
     e.preventDefault()
      try {
         await signUp(email, password)
-        navigate('/')
+        navigate('/login')
      } catch (err){
         console.log(err)
      }

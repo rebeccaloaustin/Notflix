@@ -4,9 +4,12 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { UserAuth } from "../context/AuthContext";
+import { CiCirclePlus } from "react-icons/ci";
+import { CiCircleCheck } from "react-icons/ci";
 
 const MovieItem = ({ movie }) => {
     const [like, setLike] = useState(false);
+    const [watchLater, setWatchLater] = useState(false);
     const {user} = UserAuth();
     const { title, backdrop_path, poster_path } = movie;
     const likeFavShow = async () => {
@@ -16,6 +19,18 @@ const MovieItem = ({ movie }) => {
             setLike(!like)
             await updateDoc(userDoc, {
                 favShows: arrayUnion({...movie})
+            })
+        } else (err) => {
+            console.log(err)
+        }
+    }
+    const addWatchLater = async () => {
+        const userEmail = user?.email
+        if(userEmail) {
+            const userDoc = doc(db, 'users', userEmail)
+            setWatchLater(!watchLater)
+            await updateDoc(userDoc, {
+                watchLater: arrayUnion({...movie})
             })
         } else (err) => {
             console.log(err)
@@ -37,12 +52,27 @@ const MovieItem = ({ movie }) => {
           {like ? (
             <FaHeart
               size={20}
-              className="absolute top-2 left-2 text-gray-300"
+              className="absolute top-2 right-2 text-gray-300"
             />
           ) : (
             <FaRegHeart
               size={20}
+              className="absolute top-2 right-2 text-gray-300"
+              title="Add to favorites"
+            />
+          )}
+        </p>
+        <p onClick={addWatchLater} className="cursor-pointer">
+          {watchLater ? (
+            <CiCircleCheck 
+              size={30}
               className="absolute top-2 left-2 text-gray-300"
+            />
+          ) : (
+            <CiCirclePlus
+              size={30}
+              className="absolute top-2 left-2 text-gray-300"
+              title="Add to watch later"
             />
           )}
         </p>
