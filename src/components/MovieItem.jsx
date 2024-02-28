@@ -6,12 +6,15 @@ import { db } from "../services/firebase";
 import { UserAuth } from "../context/AuthContext";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleCheck } from "react-icons/ci";
+import MovieModal from "./MovieModal";
+
 
 const MovieItem = ({ movie }) => {
     const [like, setLike] = useState(false);
     const [watchLater, setWatchLater] = useState(false);
     const {user} = UserAuth();
     const { title, backdrop_path, poster_path } = movie;
+    
     const likeFavShow = async () => {
         const userEmail = user?.email
         if(userEmail) {
@@ -36,49 +39,57 @@ const MovieItem = ({ movie }) => {
             console.log(err)
         }
     }
+    const [showModal, setShowModal] = useState(false);
+    const openModal = () => {
+      setShowModal(true);
+  };
+
+    const closeModal = () => {
+      setShowModal(false);
+  };
   return (
-    <div className="relative w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block rounded-lg overflow-hidden cursor- pointer m-2">
-      <img
-        className="w-full h-40 block object-cover object-top"
-        src={createImageUrl(backdrop_path ?? poster_path, "w500")}
-        alt={title}
-      />
-
-      <div className="absolute top-0 left-0 w-full h-40 bg-black/80 opacity-0 hover:opacity-100">
-        <p className="whitespace-normal text-xs md:text-sm flex justify-center items-center h-full font-nsans-bold">
-          {movie.title}
-        </p>
-        <p onClick={likeFavShow} className="cursor-pointer">
-          {like ? (
-            <FaHeart
-              size={20}
-              className="absolute top-2 right-2 text-gray-300"
+    <div className="relative w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2"
+             >
+            <img
+                className="w-full h-40 block object-cover object-top"
+                src={createImageUrl(backdrop_path ?? poster_path, "w500")}
+                alt={title}
             />
-          ) : (
-            <FaRegHeart
-              size={20}
-              className="absolute top-2 right-2 text-gray-300"
-              title="Add to favorites"
-            />
-          )}
-        </p>
-        <p onClick={addWatchLater} className="cursor-pointer">
-          {watchLater ? (
-            <CiCircleCheck 
-              size={30}
-              className="absolute top-2 left-2 text-gray-300"
-            />
-          ) : (
-            <CiCirclePlus
-              size={30}
-              className="absolute top-2 left-2 text-gray-300"
-              title="Add to watch later"
-            />
-          )}
-        </p>
-      </div>
-    </div>
-  );
+            <div className="absolute top-0 left-0 w-full h-40 bg-black/80 opacity-0 hover:opacity-100">
+                <p className="whitespace-normal text-xs md:text-sm flex justify-center items-center h-full font-nsans-bold" onClick={openModal}>
+                    {movie.title}
+                </p>
+                <p onClick={likeFavShow} className="cursor-pointer">
+                    {like ? (
+                        <FaHeart
+                            size={20}
+                            className="absolute top-2 right-2 text-gray-300"
+                        />
+                    ) : (
+                        <FaRegHeart
+                            size={20}
+                            className="absolute top-2 right-2 text-gray-300"
+                            title="Add to favorites"
+                        />
+                    )}
+                </p>
+                <p onClick={addWatchLater} className="cursor-pointer">
+                    {watchLater ? (
+                        <CiCircleCheck 
+                            size={30}
+                            className="absolute top-2 left-2 text-gray-300"
+                        />
+                    ) : (
+                        <CiCirclePlus
+                            size={30}
+                            className="absolute top-2 left-2 text-gray-300"
+                            title="Add to watch later"
+                        />
+                    )}
+                </p>
+            </div>
+            {showModal && <MovieModal movie={movie} onClose={closeModal} />}
+        </div>
+    );
 };
-
 export default MovieItem;

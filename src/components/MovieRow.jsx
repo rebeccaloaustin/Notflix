@@ -6,6 +6,7 @@ import {MdChevronLeft, MdChevronRight} from "react-icons/md";
 const MovieRow = ({title, url}) => {
     const rowId = Math.floor(Math.random() * 1000)
     const [movies, setMovies] = useState([]);
+   
     useEffect(() => {
         axios.get(url).then((response) => setMovies(response.data.results));
     }, [url]);
@@ -30,6 +31,7 @@ const MovieRow = ({title, url}) => {
                 <MovieItem key={movie.id} movie={movie} />
             ))}
         </div>
+        
         <MdChevronRight 
         onClick={() => slide(1000)}
         className="absolute right-2 opacity-80 text-white z-10 hidden group-hover:block cursor-pointer" 

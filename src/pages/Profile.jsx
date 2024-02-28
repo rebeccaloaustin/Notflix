@@ -113,7 +113,7 @@ const Profile = () => {
           <h2 className="font-nsans-bold md:text-xl p-4 capitalize">
             Watch Later
           </h2>
-          <div className="relative flex items-center group">
+          <div className="relative flex items-center group mb-10">
             <MdChevronLeft
               onClick={() => slide("watchLaterSlider", -1000)}
               className="absolute left-2 opacity-80 text-white z-10 hidden group-hover:block cursor-pointer"
