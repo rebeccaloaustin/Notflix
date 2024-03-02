@@ -49,7 +49,7 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 ></input>
-                <button className="bg-red-600 py-3 my-3 rounded font-nsans-bold">
+                <button className="bg-red-600 hover:bg-red-700 py-3 my-3 rounded font-nsans-bold">
                   Login
                 </button>
                 <div className="flex justify-between items-center text-gray-600 checked">

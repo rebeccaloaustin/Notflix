@@ -59,30 +59,28 @@ const MovieItem = ({ movie }) => {
                 <p className="whitespace-normal text-xs md:text-sm flex justify-center items-center h-full font-nsans-bold" onClick={openModal}>
                     {movie.title}
                 </p>
-                <p onClick={likeFavShow} className="cursor-pointer">
+                <p onClick={likeFavShow} className="cursor-pointer absolute top-2 right-2 text-gray-300 hover:text-gray-200">
                     {like ? (
                         <FaHeart
                             size={20}
-                            className="absolute top-2 right-2 text-gray-300"
+                            title="Added to favorites"
                         />
                     ) : (
                         <FaRegHeart
                             size={20}
-                            className="absolute top-2 right-2 text-gray-300"
                             title="Add to favorites"
                         />
                     )}
                 </p>
-                <p onClick={addWatchLater} className="cursor-pointer">
+                <p onClick={addWatchLater} className="cursor-pointer absolute top-2 left-2 text-gray-300 hover:text-gray-200">
                     {watchLater ? (
                         <CiCircleCheck 
                             size={30}
-                            className="absolute top-2 left-2 text-gray-300"
+                            title="Added to watch later"
                         />
                     ) : (
                         <CiCirclePlus
                             size={30}
-                            className="absolute top-2 left-2 text-gray-300"
                             title="Add to watch later"
                         />
                     )}

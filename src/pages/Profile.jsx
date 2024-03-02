@@ -97,7 +97,7 @@ const Profile = () => {
                     <p>
                         <AiOutlineClose size={30}
                         onClick={() => unlikeShow(movie)}
-                        className="absolute top-2 right-2"
+                        className="absolute top-2 right-2 hover:text-gray-300"
                         />
                     </p>
                   </div>
